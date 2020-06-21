@@ -14,6 +14,6 @@ data = conn.recv(1024)
 print("Got data", data)
 
 # Попробуем получить что-то более интересное
-conn.send(b"Yes, yes. Hello.")
+# conn.send("HTTP/1.1 200 OK\n Content-Length: 100\n Connection: close\n Content-Type: text/html\n\n hello".encode("utf-8"))
 
 my_socket.close()
