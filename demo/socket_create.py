@@ -24,9 +24,10 @@ proto
 
 # Сокет с явным указанием всех параметров
 my_socket = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM, proto=0)
-
-# Точно такой же сокет, но с парметрами по умолчанию
-default_socket = socket.socket()
-
+print(my_socket)
 my_socket.close()
-default_socket.close()
+
+# С парметрами по умолчанию
+# default_socket = socket.socket()
+# print(my_socket)
+# default_socket.close()

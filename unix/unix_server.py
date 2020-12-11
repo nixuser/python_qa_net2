@@ -6,11 +6,11 @@ SOCKET_FILE = '/tmp/echo.socket'
 if os.path.exists(SOCKET_FILE):
     os.remove(SOCKET_FILE)
 
-print("Открываем UNIX сокет...")
+print(f"Opening Unix socket on {SOCKET_FILE}")
 server = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
 server.bind(SOCKET_FILE)
 
-print("Слушаем...")
+print("Listening...")
 while True:
     datagram = server.recv(1024)
     if not datagram:
@@ -22,7 +22,7 @@ while True:
         break
 
 print("-" * 20)
-print("Выключение...")
+print("Turning off...")
 server.close()
 os.remove(SOCKET_FILE)
-print("Выполнено")
+print("Done")

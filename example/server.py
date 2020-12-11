@@ -1,13 +1,15 @@
 import socket
 import random
+import logging
 
-HOST = socket.gethostname()
-PORT = random.randint(3000, 9999)
+logging.basicConfig(level=logging.DEBUG)
+
+HOST = "127.0.0.1"
+PORT = random.randint(10000, 20000)
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
-    # Биндимся на хост
-    print("Биндимся на {}:{}".format(HOST, PORT))
+    print(f"Binding server on {HOST}:{PORT}")
     s.bind((HOST, PORT))
     s.listen()
 
@@ -19,15 +21,15 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         while True:
 
             data = conn.recv(1024)
-            print("Recieved", data, "from", addr)
+            print("Received", data, "from", addr)
 
             if not data or data == b"close":
-                print("Got", data, "and closed connection")
+                print("Got termination signal", data, "and closed connection")
                 conn.close()
 
-            # Переворачиваем полученное сообщение и шлем обратно
+            # Get message and revert it and send it back
             data = data.decode("utf-8")[::-1]
             conn.send(data.encode("utf-8"))
 
-            # Выводим сообщение что отправили и куда
-            print("Send", data, "to", addr)
+            # Log message what we send back
+            logging.info(f"Sent '{data}' to {addr}")

@@ -1,8 +1,9 @@
 import socket
 
+from demo.config import LOCALHOST
+
 my_socket = socket.socket()
-host = socket.gethostname()
-address_and_port = (host, 8889)
+address_and_port = (LOCALHOST, 8889)
 my_socket.bind(address_and_port)
 print("Started socket on", address_and_port)
 my_socket.listen(10)

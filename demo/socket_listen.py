@@ -1,11 +1,14 @@
 import socket
 
+from demo.config import LOCALHOST, random_port
+
 my_socket = socket.socket()
-host = socket.gethostname()
-address_and_port = (host, 8889)
+address_and_port = (LOCALHOST, random_port())
 my_socket.bind(address_and_port)
 
 # https://docs.python.org/3/library/socket.html#socket.socket.listen
 # Без дополнительной работы мы можем обрабатывать только одно соединение
 # backlog - это размер очереди таких соединений
-my_socket.listen(10)
+
+BACKLOG = 10
+my_socket.listen(BACKLOG)

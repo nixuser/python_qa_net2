@@ -3,26 +3,26 @@ import socket
 
 SOCKET_FILE = '/tmp/echo.socket'
 
-print("Подключение...")
+print(f"Connecting to {SOCKET_FILE}...")
+
 if os.path.exists(SOCKET_FILE):
     client = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
     client.connect(SOCKET_FILE)
-    print("Выполнено.")
+    print("Done.")
 
-    print("Отправьте 'DONE' чтобы выключить сервер.")
+    print("Send 'DONE' to shut down server.")
     while True:
         try:
-            x = input("> ")
-            if "" != x:
-                print("ОТПРАВЛЕНО: %s" % x)
-                client.send(x.encode('utf-8'))
-                if "DONE" == x:
-                    print("Выключение.")
+            input_data = input("> ")
+            if "" != input_data:
+                print("Sent: %s" % input_data)
+                client.send(input_data.encode('utf-8'))
+                if "DONE" == input_data:
                     break
         except KeyboardInterrupt as k:
-            print("Выключение.")
+            print("Turn off.")
             break
     client.close()
 else:
-    print("Не могу соединиться!")
-print("Выполнено")
+    print("I can't connect!")
+print("Done")

@@ -1,8 +1,12 @@
 import socket
 
+from demo.config import LOCALHOST
+
+# Define this target port
+TARGET_PORT = None
+
 my_socket = socket.socket()
-host = socket.gethostname()
-address_and_port = (host, 8889)
+address_and_port = (LOCALHOST, TARGET_PORT)
 
 my_socket.connect(address_and_port)
 
