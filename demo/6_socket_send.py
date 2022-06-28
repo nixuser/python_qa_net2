@@ -1,12 +1,11 @@
 import socket
+import sys
 
-from demo.config import LOCALHOST
+from config import LOCALHOST
 
 # Define this target port
-TARGET_PORT = None
-
 my_socket = socket.socket()
-address_and_port = (LOCALHOST, TARGET_PORT)
+address_and_port = (LOCALHOST, int(sys.argv[1]))
 
 my_socket.connect(address_and_port)
 

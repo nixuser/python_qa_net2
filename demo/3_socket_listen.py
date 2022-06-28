@@ -1,6 +1,6 @@
 import socket
 
-from demo.config import LOCALHOST, random_port
+from config import LOCALHOST, random_port
 
 my_socket = socket.socket()
 address_and_port = (LOCALHOST, random_port())
@@ -12,3 +12,5 @@ my_socket.bind(address_and_port)
 
 BACKLOG = 10
 my_socket.listen(BACKLOG)
+
+print(my_socket)

@@ -14,7 +14,6 @@ AF_UNIX для локальных сокетов (используя файл)
 type
 SOCK_STREAM (надёжная потокоориентированная служба (сервис) или потоковый сокет)
 SOCK_DGRAM (служба датаграмм или датаграммный сокет)
-SOCK_RAW (Сырой сокет — сырой протокол поверх сетевого уровня).
 См. https://docs.python.org/3/library/socket.html#socket.SOCK_STREAM
 
 proto
@@ -23,8 +22,13 @@ proto
 """
 
 # Сокет с явным указанием всех параметров
-my_socket = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM, proto=0)
+my_socket = socket.socket(
+    family=socket.AF_INET,
+    type=socket.SOCK_STREAM,
+)
+
 print(my_socket)
+
 my_socket.close()
 
 # С парметрами по умолчанию

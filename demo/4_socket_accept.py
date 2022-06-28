@@ -1,6 +1,6 @@
 import socket
 
-from demo.config import LOCALHOST
+from config import LOCALHOST
 
 my_socket = socket.socket()
 address_and_port = (LOCALHOST, 8889)
@@ -12,6 +12,7 @@ my_socket.listen(10)
 conn, addr = my_socket.accept()
 
 # При подключении возвращает параметры соединения и адрес клиента
-print(conn, addr)
+print("Got connection:", conn)
+print("From:", addr)
 
 my_socket.close()

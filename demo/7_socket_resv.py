@@ -1,6 +1,6 @@
 import socket
 
-from demo.config import LOCALHOST, random_port
+from config import LOCALHOST, random_port
 
 my_socket = socket.socket()
 
@@ -15,9 +15,10 @@ print("Got connection", conn, addr)
 
 # Получаем данные из соединения
 data = conn.recv(1024)
-print("Got data", data)
+print("Got data\n", data.decode("utf-8"))
 
 # Попробуем отправить что-то более интересное
-# conn.send("HTTP/1.1 200 OK\n Content-Length: 100\n Connection: close\n Content-Type: text/html\n\n <h1>Hello from OTUS!</h1>".encode("utf-8"))
+conn.send("HTTP/1.1 999 OK\n Content-Length: 100\n Connection: close\n Content-Type: text/html\n\n <h1>Hello from OTUS!</h1>".encode("utf-8"))
+# conn.send("HTTP/1.1 200 OK\n Content-Length: 100\n Connection: close\n Content-Type: application/json\n\n {\"key\": \"value\"}".encode("utf-8"))
 
 my_socket.close()
